@@ -1,0 +1,101 @@
+/*
+
+Default styles;
+
+Colors:
+- red: #FC4747
+- white: #FFFFFF
+- dark blue: #10141E
+- medium blue: #161D2F
+- light blue: #5A698F
+
+Typography:
+
+- Heading
+-- heading-l: 32px weight-300;
+-- heading-m: 24px weight-300;
+-- heading-s: 24px weight-500;
+-- heading-xs: 18px weight-500;
+
+- Body
+-- body-m: 15px weight-300;
+-- body-s: 13px weight-300;
+
+- Input (heading-m)
+-- font-size: 24px;
+-- font-weight: 300;
+-- color: #fff;
+
+*/
+
+/************************/
+/* Setting base styling */
+/************************/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  overflow-x: hidden;
+}
+
+body {
+  font-family: "Outfit";
+  --red: #fc4747;
+  --dark-blue: #10141e;
+  --greyish-blue: #5a698f;
+  --semi-dark-blue: #161d2f;
+  --white: #fff;
+  color: var(--white);
+  overflow-x: hidden;
+}
+
+input {
+  font-family: "Outfit";
+}
+
+/*************************************/
+/* Defining base HEADING text styles */
+/*************************************/
+.heading-l {
+  font-size: 32px;
+  font-weight: 300;
+}
+
+.heading-m {
+  font-size: 24px;
+  font-weight: 300;
+}
+
+.heading-s {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.heading-xs {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+/*********************************/
+/* Defining base BODY text styles*/
+/*********************************/
+.body-m {
+  font-size: 15px;
+  font-weight: 300;
+}
+
+.body-s {
+  font-size: 13px;
+  font-weight: 300;
+}
+
+/*********************************************/
+/* Defining general styles of a category page*/
+/*********************************************/
+.category-wrapper {
+  margin-top: 64px;
+  width: 100%;
+}

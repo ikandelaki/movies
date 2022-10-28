@@ -1,0 +1,23 @@
+.searchbar-container {
+  margin-bottom: 19px;
+}
+
+.searchbar-container form {
+  width: 100%;
+  display: flex;
+  gap: 24px;
+}
+
+.searchbar-input {
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  padding-bottom: 15px;
+  transition: all 0.3s;
+  box-shadow: 0px 0px;
+}
+
+.searchbar-input:focus {
+  outline: none;
+  box-shadow: 0px 1px #fff;
+}

@@ -1,0 +1,46 @@
+.sidebar-container {
+  display: flex;
+  flex-direction: column;
+  gap: 75px;
+  padding: 32px 28px;
+  border-radius: 20px;
+  height: calc(100vh - 64px);
+  background-color: var(--semi-dark-blue);
+  margin: 32px 36px 32px 32px;
+}
+
+.sidebar--nav-container {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  gap: 40px;
+}
+
+.sidebar-logo-container {
+  margin: 0 auto;
+}
+
+/* Styling Navigation Icons */
+.sidebar-icons {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.sidebar-icons path {
+  transition: all 0.3s;
+}
+
+.sidebar-icons:hover path {
+  fill: #fff;
+}
+
+.sidebar-user-image {
+  width: 40px;
+  height: 40px;
+  margin-top: auto;
+}
+
+.sidebar-user-image img {
+  width: 100%;
+}
