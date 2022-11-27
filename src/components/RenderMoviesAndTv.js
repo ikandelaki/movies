@@ -23,7 +23,7 @@ const RenderMoviesAndTv = ({
 
   // Render movies and tv series, depending on what was requested
   return moviesData.map((movie, i) => {
-    if ((movie.isTrending || i > 24) && !searchedMovie) return;
+    if ((movie.isTrending || i > 24) && !searchedMovie) return null;
     if (category && movie.category === category) {
       return (
         <div key={movie.title + "-" + movie.year + "-"} className={`movie-tv`}>
@@ -75,6 +75,7 @@ const RenderMoviesAndTv = ({
         </div>
       );
     }
+    return null;
   });
 };
 
