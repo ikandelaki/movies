@@ -1,6 +1,5 @@
 .app-container {
   display: flex;
   background-color: var(--dark-blue);
-  max-width: 1920px;
   padding-bottom: 53px;
 }
