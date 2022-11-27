@@ -64,6 +64,8 @@ const Home = ({
   const scrollRight = (event) => {
     if (event.target.disabled) return;
     if (lastSlide) return;
+    // If the last movie was not fully in viewpowert but some part of it was seen,
+    // on next slide adjust it so that the slider will slide just the needed amount
     if (
       lastTrendingMovieRef.current.getBoundingClientRect().left - 36 <=
         window.innerWidth &&

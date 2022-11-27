@@ -12,9 +12,16 @@ const RenderMoviesAndTv = ({
   setBookmark,
   searchedMovie,
 }) => {
+  // If we have the searched movie, filter the data array to render searched movies.
   const moviesData = searchedMovie
     ? data.filter((movie) => movie.title.toLowerCase().includes(searchedMovie))
     : data;
+
+  // If the user searched for the term but no movies were found return error message.
+  if (searchedMovie && !moviesData.length)
+    return <div className='heading-m'>Sorry, no movies were found...</div>;
+
+  // Render movies and tv series, depending on what was requested
   return moviesData.map((movie, i) => {
     if ((movie.isTrending || i > 24) && !searchedMovie) return;
     if (category && movie.category === category) {
