@@ -7,10 +7,12 @@ const TvSeries = ({
   setHoveredMovie,
   bookmarks,
   setBookmark,
+  setQuery,
+  searchedMovie,
 }) => {
   return (
     <div className='category-wrapper'>
-      <SearchBar />
+      <SearchBar setQuery={setQuery} />
       <div className=''>
         <h2 className='heading-l'>TvSeries</h2>
         <div className='movie-tv-container'>
@@ -20,6 +22,7 @@ const TvSeries = ({
             bookmarks={bookmarks}
             setBookmark={setBookmark}
             category={"TV Series"}
+            searchedMovie={searchedMovie}
           />
         </div>
       </div>

@@ -1,0 +1,5 @@
+@media screen and (max-width: 1440px) {
+  .movie-tv-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

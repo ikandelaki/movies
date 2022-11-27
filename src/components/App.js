@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../styles/App.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./Home";
@@ -10,11 +10,23 @@ import Sidebar from "./Sidebar";
 const App = () => {
   const [hoveredMovie, setHoveredMovie] = useState("");
   const [bookmarks, setBookmark] = useState([]);
+  const [query, setQuery] = useState("");
+  const [searchedMovie, setSearchedMovie] = useState("");
+
+  useEffect(() => {
+    const timeOutId = setTimeout(() => setSearchedMovie(query), 1000);
+    return () => clearTimeout(timeOutId);
+  }, [query]);
+
+  const resetState = () => {
+    setSearchedMovie("");
+    setQuery("");
+  };
 
   return (
     <Router>
-      <div className='app-container'>
-        <Sidebar />
+      <div className='app-container no-select'>
+        <Sidebar resetState={resetState} />
         <Routes>
           <Route
             path='/'
@@ -24,6 +36,8 @@ const App = () => {
                 setHoveredMovie={setHoveredMovie}
                 bookmarks={bookmarks}
                 setBookmark={setBookmark}
+                searchedMovie={searchedMovie}
+                setQuery={setQuery}
               />
             }
           >
@@ -35,6 +49,8 @@ const App = () => {
                   setHoveredMovie={setHoveredMovie}
                   bookmarks={bookmarks}
                   setBookmark={setBookmark}
+                  searchedMovie={searchedMovie}
+                  setQuery={setQuery}
                 />
               }
             />
@@ -47,6 +63,8 @@ const App = () => {
                 setHoveredMovie={setHoveredMovie}
                 bookmarks={bookmarks}
                 setBookmark={setBookmark}
+                searchedMovie={searchedMovie}
+                setQuery={setQuery}
               />
             }
           />
@@ -58,6 +76,8 @@ const App = () => {
                 setHoveredMovie={setHoveredMovie}
                 bookmarks={bookmarks}
                 setBookmark={setBookmark}
+                searchedMovie={searchedMovie}
+                setQuery={setQuery}
               />
             }
           />
@@ -69,6 +89,8 @@ const App = () => {
                 setHoveredMovie={setHoveredMovie}
                 bookmarks={bookmarks}
                 setBookmark={setBookmark}
+                searchedMovie={searchedMovie}
+                setQuery={setQuery}
               />
             }
           />

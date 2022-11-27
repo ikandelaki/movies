@@ -9,7 +9,15 @@ import RenderBookmarkLogo from "./RenderBookmarkLogo";
 import { ArrowLeftIcon } from "@heroicons/react/20/solid";
 import { ArrowRightIcon } from "@heroicons/react/20/solid";
 
-const Home = ({ hoveredMovie, setHoveredMovie, bookmarks, setBookmark }) => {
+const Home = ({
+  hoveredMovie,
+  setHoveredMovie,
+  bookmarks,
+  setBookmark,
+  setQuery,
+  searchedMovie,
+  query,
+}) => {
   const [slideNumber, setSlideNumber] = useState(0);
   const [lastSlide, setLastSlide] = useState(false);
   const trendingContainerRef = useRef();
@@ -56,7 +64,7 @@ const Home = ({ hoveredMovie, setHoveredMovie, bookmarks, setBookmark }) => {
   const scrollRight = () => {
     if (lastSlide) return;
     if (
-      lastTrendingMovieRef.current.getBoundingClientRect().left <
+      lastTrendingMovieRef.current.getBoundingClientRect().left - 36 <=
         window.innerWidth &&
       lastTrendingMovieRef.current.getBoundingClientRect().right >
         window.innerWidth
@@ -67,13 +75,17 @@ const Home = ({ hoveredMovie, setHoveredMovie, bookmarks, setBookmark }) => {
           window.innerWidth) -
         36
       }px)`;
+
       setLastSlide(true);
     } else if (!lastSlide) {
       trendingContainerRef.current.style.transform = `translateX(${
         (slideNumber - 1) * 510
       }px)`;
     }
-
+    console.log(
+      lastTrendingMovieRef.current.getBoundingClientRect().left,
+      window.innerWidth
+    );
     setSlideNumber(slideNumber - 1);
   };
 
@@ -88,29 +100,34 @@ const Home = ({ hoveredMovie, setHoveredMovie, bookmarks, setBookmark }) => {
     setSlideNumber(slideNumber + 1);
   };
 
+  console.log(slideNumber, lastSlide);
   return (
     <div className='category-wrapper home-container'>
-      <SearchBar />
-      <div className='trending-heading-container'>
-        <h2 className='heading-l'>Trending</h2>
-        <div className='arrows-container'>
-          <div
-            className={`arrow-left ${!slideNumber ? "disabled" : ""}`}
-            onClick={() => scrollLeft()}
-          >
-            <ArrowLeftIcon />
+      <SearchBar query={query} setQuery={setQuery} />
+      {!searchedMovie ? (
+        <>
+          <div className='trending-heading-container'>
+            <h2 className='heading-l'>Trending</h2>
+            <div className='arrows-container'>
+              <div
+                className={`arrow-left ${!slideNumber ? "disabled" : ""}`}
+                onClick={() => scrollLeft()}
+              >
+                <ArrowLeftIcon />
+              </div>
+              <div
+                className={`arrow-right ${lastSlide ? "disabled" : ""}`}
+                onClick={() => scrollRight()}
+              >
+                <ArrowRightIcon />
+              </div>
+            </div>
           </div>
-          <div
-            className={`arrow-right ${lastSlide ? "disabled" : ""}`}
-            onClick={() => scrollRight()}
-          >
-            <ArrowRightIcon />
+          <div className='home-trending--container' ref={trendingContainerRef}>
+            {renderTrendingMovies()}
           </div>
-        </div>
-      </div>
-      <div className='home-trending--container' ref={trendingContainerRef}>
-        {renderTrendingMovies()}
-      </div>
+        </>
+      ) : null}
       <div className='home-recommended--container'>
         <h2 className='heading-l'>Recommended for you</h2>
         <div className='movie-tv-container'>
@@ -119,6 +136,7 @@ const Home = ({ hoveredMovie, setHoveredMovie, bookmarks, setBookmark }) => {
             setHoveredMovie={setHoveredMovie}
             bookmarks={bookmarks}
             setBookmark={setBookmark}
+            searchedMovie={searchedMovie}
           />
         </div>
       </div>

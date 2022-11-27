@@ -7,32 +7,32 @@ import { ReactComponent as BookmarksLogo } from "../logos/icon-nav-bookmark.svg"
 import { ReactComponent as Logo } from "../logos/logo.svg";
 import { Link } from "react-router-dom";
 
-const Sidebar = () => {
+const Sidebar = ({ resetState }) => {
   return (
     <div className='sidebar-container'>
       <div className='sidebar-logo-container'>
-        <Link to='/'>
+        <Link to='/' onClick={resetState}>
           <Logo />
         </Link>
       </div>
       <div className='sidebar--nav-container'>
         <div className='sidebar-icons'>
-          <Link to='/'>
+          <Link to='/' onClick={resetState}>
             <HomeLogo />
           </Link>
         </div>
         <div className='sidebar-icons'>
-          <Link to='/movies'>
+          <Link to='/movies' onClick={resetState}>
             <MoviesLogo />
           </Link>
         </div>
         <div className='sidebar-icons'>
-          <Link to='/tvseries'>
+          <Link to='/tvseries' onClick={resetState}>
             <TvSeriesLogo />
           </Link>
         </div>
         <div className='sidebar-icons'>
-          <Link to='/bookmarks'>
+          <Link to='/bookmarks' onClick={resetState}>
             <BookmarksLogo />
           </Link>
         </div>

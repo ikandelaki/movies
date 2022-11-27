@@ -2,7 +2,7 @@ import React from "react";
 import "../styles/SearchBar.css";
 import { ReactComponent as SearchLogo } from "../logos/icon-search.svg";
 
-const SearchBar = () => {
+const SearchBar = ({ query, setQuery }) => {
   return (
     <div className='searchbar-container'>
       <form>
@@ -10,6 +10,8 @@ const SearchBar = () => {
         <input
           className='heading-m searchbar-input'
           type='text'
+          value={query}
+          onChange={(event) => setQuery(event.target.value)}
           placeholder='Search for movies or TV series'
         />
       </form>

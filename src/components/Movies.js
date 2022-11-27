@@ -2,10 +2,17 @@ import React from "react";
 import RenderMoviesAndTv from "./RenderMoviesAndTv";
 import SearchBar from "./SearchBar";
 
-const Movies = ({ hoveredMovie, setHoveredMovie, bookmarks, setBookmark }) => {
+const Movies = ({
+  hoveredMovie,
+  setHoveredMovie,
+  bookmarks,
+  setBookmark,
+  searchedMovie,
+  setQuery,
+}) => {
   return (
     <div className='category-wrapper'>
-      <SearchBar />
+      <SearchBar setQuery={setQuery} />
       <div>
         <h2 className='heading-l'>Movies</h2>
         <div className='movie-tv-container'>
@@ -15,6 +22,7 @@ const Movies = ({ hoveredMovie, setHoveredMovie, bookmarks, setBookmark }) => {
             bookmarks={bookmarks}
             setBookmark={setBookmark}
             category={"Movie"}
+            searchedMovie={searchedMovie}
           />
         </div>
       </div>

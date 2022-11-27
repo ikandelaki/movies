@@ -10,9 +10,13 @@ const RenderMoviesAndTv = ({
   category,
   bookmarks,
   setBookmark,
+  searchedMovie,
 }) => {
-  return data.map((movie, i) => {
-    if (movie.isTrending || i > 24) return;
+  const moviesData = searchedMovie
+    ? data.filter((movie) => movie.title.toLowerCase().includes(searchedMovie))
+    : data;
+  return moviesData.map((movie, i) => {
+    if ((movie.isTrending || i > 24) && !searchedMovie) return;
     if (category && movie.category === category) {
       return (
         <div key={movie.title + "-" + movie.year + "-"} className={`movie-tv`}>
