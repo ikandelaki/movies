@@ -7,7 +7,7 @@ import "../styles/Home.css";
 import RenderPlayButton from "./RenderPlayButton";
 import RenderBookmarkLogo from "./RenderBookmarkLogo";
 
-const Home = ({ hoveredMovie, setHoveredMovie }) => {
+const Home = ({ hoveredMovie, setHoveredMovie, bookmarks, setBookmark }) => {
   const renderTrendingMovies = () => {
     return data.map((movie) => {
       if (movie.isTrending) {
@@ -29,7 +29,11 @@ const Home = ({ hoveredMovie, setHoveredMovie }) => {
 
             <div className='home-trending--movie_content'>
               {/* Render bookmark logo */}
-              <RenderBookmarkLogo />
+              <RenderBookmarkLogo
+                bookmarks={bookmarks}
+                setBookmark={setBookmark}
+                movie={movie}
+              />
               {/* Render play button */}
               <RenderPlayButton />
               {/* Render small movie description */}
@@ -56,6 +60,8 @@ const Home = ({ hoveredMovie, setHoveredMovie }) => {
           <RenderMoviesAndTv
             hoveredMovie={hoveredMovie}
             setHoveredMovie={setHoveredMovie}
+            bookmarks={bookmarks}
+            setBookmark={setBookmark}
           />
         </div>
       </div>

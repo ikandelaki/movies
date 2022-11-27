@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../styles/App.css";
-import Home from "./Home";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Home from "./Home";
 import Movies from "./Movies";
 import TvSeries from "./TvSeries";
 import Bookmarks from "./Bookmarks";
@@ -9,6 +9,7 @@ import Sidebar from "./Sidebar";
 
 const App = () => {
   const [hoveredMovie, setHoveredMovie] = useState("");
+  const [bookmarks, setBookmark] = useState([]);
 
   return (
     <Router>
@@ -21,6 +22,8 @@ const App = () => {
               <Home
                 hoveredMovie={hoveredMovie}
                 setHoveredMovie={setHoveredMovie}
+                bookmarks={bookmarks}
+                setBookmark={setBookmark}
               />
             }
           >
@@ -30,6 +33,8 @@ const App = () => {
                 <Home
                   hoveredMovie={hoveredMovie}
                   setHoveredMovie={setHoveredMovie}
+                  bookmarks={bookmarks}
+                  setBookmark={setBookmark}
                 />
               }
             />
@@ -40,6 +45,8 @@ const App = () => {
               <Movies
                 hoveredMovie={hoveredMovie}
                 setHoveredMovie={setHoveredMovie}
+                bookmarks={bookmarks}
+                setBookmark={setBookmark}
               />
             }
           />
@@ -49,6 +56,8 @@ const App = () => {
               <TvSeries
                 hoveredMovie={hoveredMovie}
                 setHoveredMovie={setHoveredMovie}
+                bookmarks={bookmarks}
+                setBookmark={setBookmark}
               />
             }
           />
@@ -58,6 +67,8 @@ const App = () => {
               <Bookmarks
                 hoveredMovie={hoveredMovie}
                 setHoveredMovie={setHoveredMovie}
+                bookmarks={bookmarks}
+                setBookmark={setBookmark}
               />
             }
           />

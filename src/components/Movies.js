@@ -2,7 +2,7 @@ import React from "react";
 import RenderMoviesAndTv from "./RenderMoviesAndTv";
 import SearchBar from "./SearchBar";
 
-const Movies = ({ hoveredMovie, setHoveredMovie }) => {
+const Movies = ({ hoveredMovie, setHoveredMovie, bookmarks, setBookmark }) => {
   return (
     <div className='category-wrapper'>
       <SearchBar />
@@ -12,6 +12,8 @@ const Movies = ({ hoveredMovie, setHoveredMovie }) => {
           <RenderMoviesAndTv
             hoveredMovie={hoveredMovie}
             setHoveredMovie={setHoveredMovie}
+            bookmarks={bookmarks}
+            setBookmark={setBookmark}
             category={"Movie"}
           />
         </div>

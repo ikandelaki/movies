@@ -4,7 +4,13 @@ import RenderBookmarkLogo from "./RenderBookmarkLogo";
 import RenderMovieDescription from "./RenderMovieDescription";
 import RenderPlayButton from "./RenderPlayButton";
 
-const RenderMoviesAndTv = ({ hoveredMovie, setHoveredMovie, category }) => {
+const RenderMoviesAndTv = ({
+  hoveredMovie,
+  setHoveredMovie,
+  category,
+  bookmarks,
+  setBookmark,
+}) => {
   return data.map((movie, i) => {
     if (movie.isTrending || i > 24) return;
     if (category && movie.category === category) {
@@ -23,7 +29,11 @@ const RenderMoviesAndTv = ({ hoveredMovie, setHoveredMovie, category }) => {
               alt={movie.title}
             />
             <RenderPlayButton />
-            <RenderBookmarkLogo />
+            <RenderBookmarkLogo
+              movie={movie}
+              bookmarks={bookmarks}
+              setBookmark={setBookmark}
+            />
           </div>
           <RenderMovieDescription movie={movie} />
         </div>
@@ -44,7 +54,11 @@ const RenderMoviesAndTv = ({ hoveredMovie, setHoveredMovie, category }) => {
               alt={movie.title}
             />
             <RenderPlayButton />
-            <RenderBookmarkLogo />
+            <RenderBookmarkLogo
+              movie={movie}
+              bookmarks={bookmarks}
+              setBookmark={setBookmark}
+            />
           </div>
           <RenderMovieDescription movie={movie} />
         </div>
