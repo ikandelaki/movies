@@ -61,7 +61,8 @@ const Home = ({
   };
 
   /* Slide right on right arrow click if it is not the last item */
-  const scrollRight = () => {
+  const scrollRight = (event) => {
+    if (event.target.disabled) return;
     if (lastSlide) return;
     if (
       lastTrendingMovieRef.current.getBoundingClientRect().left - 36 <=
@@ -82,25 +83,33 @@ const Home = ({
         (slideNumber - 1) * 510
       }px)`;
     }
-    console.log(
-      lastTrendingMovieRef.current.getBoundingClientRect().left,
-      window.innerWidth
-    );
+
+    // Disable button for 300ms on click to prevent overscroll
+    event.target.disabled = true;
+    setTimeout(() => {
+      event.target.disabled = false;
+    }, 300);
     setSlideNumber(slideNumber - 1);
   };
 
   /* Slide left on left arrow click if it is not the first item */
-  const scrollLeft = () => {
+  const scrollLeft = (event) => {
+    if (event.target.disabled) return;
     setLastSlide(false);
     if (slideNumber === 0) return;
     trendingContainerRef.current.style.transform = `translateX(${
       (slideNumber + 1) * 510
     }px)`;
 
+    // Disable button for 300ms on click to prevent overscroll
+    event.target.disabled = true;
+    setTimeout(() => {
+      event.target.disabled = false;
+    }, 300);
+
     setSlideNumber(slideNumber + 1);
   };
 
-  console.log(slideNumber, lastSlide);
   return (
     <div className='category-wrapper home-container'>
       <SearchBar query={query} setQuery={setQuery} />
@@ -111,13 +120,13 @@ const Home = ({
             <div className='arrows-container'>
               <div
                 className={`arrow-left ${!slideNumber ? "disabled" : ""}`}
-                onClick={() => scrollLeft()}
+                onClick={(event) => scrollLeft(event)}
               >
                 <ArrowLeftIcon />
               </div>
               <div
                 className={`arrow-right ${lastSlide ? "disabled" : ""}`}
-                onClick={() => scrollRight()}
+                onClick={(event) => scrollRight(event)}
               >
                 <ArrowRightIcon />
               </div>
