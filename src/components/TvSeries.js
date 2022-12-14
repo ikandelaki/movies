@@ -9,12 +9,17 @@ const TvSeries = ({
   setBookmark,
   setQuery,
   searchedMovie,
+  query,
 }) => {
   return (
     <div className='category-wrapper'>
-      <SearchBar setQuery={setQuery} />
+      <SearchBar
+        searchedMovie={searchedMovie}
+        query={query}
+        setQuery={setQuery}
+      />
       <div className=''>
-        <h2 className='heading-l'>TvSeries</h2>
+        {!searchedMovie ? <h2 className='heading-l'>TvSeries</h2> : null}
         <div className='movie-tv-container'>
           <RenderMoviesAndTv
             hoveredMovie={hoveredMovie}

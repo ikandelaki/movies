@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import data from "../data/data.json";
 import RenderBookmarkLogo from "./RenderBookmarkLogo";
 import RenderMovieDescription from "./RenderMovieDescription";
 import RenderPlayButton from "./RenderPlayButton";
+import { useSearchedMoviesUpdate } from "./context/SearchedMoviesContext";
+import { useSearchedMovies } from "./context/SearchedMoviesContext";
 
 const RenderMoviesAndTv = ({
   hoveredMovie,
@@ -17,9 +19,32 @@ const RenderMoviesAndTv = ({
     ? data.filter((movie) => movie.title.toLowerCase().includes(searchedMovie))
     : data;
 
+  // if we have the searched movie, store in state the number of search results.
+  const updateSearchedMoviesNumber = useSearchedMoviesUpdate();
+  const searchedMoviesNumber = useSearchedMovies();
+
+  // Calculate how many search results belong to current category
+  useEffect(() => {
+    if (category && searchedMovie) {
+      const numberOfSearchedMoviesInCategory = moviesData.reduce(
+        (acc, movie) => (movie.category === category ? acc + 1 : acc),
+        0
+      );
+      updateSearchedMoviesNumber(numberOfSearchedMoviesInCategory);
+    } else {
+      updateSearchedMoviesNumber(moviesData.length);
+    }
+
+    if (searchedMovie && category === "Bookmarks") {
+      updateSearchedMoviesNumber(moviesData.length);
+    }
+  }, [searchedMovie, category, moviesData, updateSearchedMoviesNumber]);
+
   // If the user searched for the term but no movies were found return error message.
-  if (searchedMovie && !moviesData.length)
-    return <div className='heading-m'>Sorry, no movies were found...</div>;
+  if (searchedMovie && !searchedMoviesNumber)
+    return (
+      <div className='heading-m error'>Sorry, no movies were found...</div>
+    );
 
   // Render movies and tv series, depending on what was requested
   return moviesData.map((movie, i) => {

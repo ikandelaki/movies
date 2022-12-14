@@ -22,3 +22,9 @@
   outline: none;
   box-shadow: 0px 1px #fff;
 }
+
+.search-results-container {
+  margin-top: 20px;
+  font-size: 36px;
+  font-weight: 300;
+}

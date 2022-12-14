@@ -9,10 +9,15 @@ const Bookmarks = ({
   setBookmark,
   setQuery,
   searchedMovie,
+  query,
 }) => {
   return (
     <div className='category-wrapper'>
-      <SearchBar setQuery={setQuery} />
+      <SearchBar
+        searchedMovie={searchedMovie}
+        query={query}
+        setQuery={setQuery}
+      />
       <div>
         <h2 className='heading-l'>Bookmarks</h2>
         <div className='movie-tv-container'>
@@ -23,9 +28,12 @@ const Bookmarks = ({
               bookmarks={bookmarks}
               setBookmark={setBookmark}
               searchedMovie={searchedMovie}
+              category={"bookmarks"}
             />
           ) : (
-            <span className='heading-m'>You have no items in bookmarks</span>
+            <span className='heading-m error'>
+              You have no items in bookmarks
+            </span>
           )}
         </div>
       </div>

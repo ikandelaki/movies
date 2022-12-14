@@ -72,18 +72,37 @@ const Home = ({
       lastTrendingMovieRef.current.getBoundingClientRect().right >
         window.innerWidth
     ) {
-      trendingContainerRef.current.style.transform = `translateX(${
-        slideNumber * 510 -
-        (lastTrendingMovieRef.current.getBoundingClientRect().right -
-          window.innerWidth) -
-        36
-      }px)`;
+      // Slider for mobile screens
+      if (window.innerWidth < 661) {
+        trendingContainerRef.current.style.transform = `translateX(${
+          slideNumber * 256 -
+          (lastTrendingMovieRef.current.getBoundingClientRect().right -
+            window.innerWidth) -
+          25
+        }px)`;
+      } else {
+        // Slider for desktops
+        trendingContainerRef.current.style.transform = `translateX(${
+          slideNumber * 510 -
+          (lastTrendingMovieRef.current.getBoundingClientRect().right -
+            window.innerWidth) -
+          36
+        }px)`;
+      }
 
       setLastSlide(true);
     } else if (!lastSlide) {
-      trendingContainerRef.current.style.transform = `translateX(${
-        (slideNumber - 1) * 510
-      }px)`;
+      // Slider for mobile screens
+      if (window.innerWidth < 661) {
+        trendingContainerRef.current.style.transform = `translateX(${
+          (slideNumber - 1) * 256
+        }px)`;
+      } else {
+        // Slider for desktops
+        trendingContainerRef.current.style.transform = `translateX(${
+          (slideNumber - 1) * 510
+        }px)`;
+      }
     }
 
     // Disable button for 300ms on click to prevent overscroll
@@ -99,9 +118,18 @@ const Home = ({
     if (event.target.disabled) return;
     setLastSlide(false);
     if (slideNumber === 0) return;
-    trendingContainerRef.current.style.transform = `translateX(${
-      (slideNumber + 1) * 510
-    }px)`;
+
+    if (window.innerWidth < 661) {
+      // Slider for mobile screens
+      trendingContainerRef.current.style.transform = `translateX(${
+        (slideNumber + 1) * 256
+      }px)`;
+    } else {
+      // Slider for desktops
+      trendingContainerRef.current.style.transform = `translateX(${
+        (slideNumber + 1) * 510
+      }px)`;
+    }
 
     // Disable button for 300ms on click to prevent overscroll
     event.target.disabled = true;
@@ -114,7 +142,11 @@ const Home = ({
 
   return (
     <div className='category-wrapper home-container'>
-      <SearchBar query={query} setQuery={setQuery} />
+      <SearchBar
+        searchedMovie={searchedMovie}
+        query={query}
+        setQuery={setQuery}
+      />
       {!searchedMovie ? (
         <>
           <div className='trending-heading-container'>
@@ -140,7 +172,9 @@ const Home = ({
         </>
       ) : null}
       <div className='home-recommended--container'>
-        <h2 className='heading-l'>Recommended for you</h2>
+        {!searchedMovie ? (
+          <h2 className='heading-l'>Recommended for you</h2>
+        ) : null}
         <div className='movie-tv-container'>
           <RenderMoviesAndTv
             hoveredMovie={hoveredMovie}

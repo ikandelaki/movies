@@ -3,3 +3,152 @@
     grid-template-columns: repeat(3, 1fr);
   }
 }
+
+@media screen and (max-width: 1120px) {
+  .movie-tv-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .heading-s {
+    font-size: 18px;
+  }
+
+  .body-m {
+    font-size: 13px;
+  }
+
+  .app-container {
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  .sidebar-container {
+    min-height: unset;
+    height: auto;
+    padding: 20px 16px 20px 24px;
+    gap: unset;
+    margin-bottom: 0;
+  }
+
+  .sidebar-container,
+  .sidebar--nav-container {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .sidebar-user-image {
+    margin-top: unset;
+  }
+
+  .sidebar-logo-container {
+    margin: unset;
+  }
+
+  .category-wrapper {
+    padding: 0 25px;
+    margin-top: 33px;
+  }
+
+  .searchbar-container {
+    margin-bottom: 33px;
+  }
+
+  .movie-tv-container {
+    padding: 0;
+    margin-top: 24px;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .arrows-container {
+    padding: 0;
+  }
+
+  .movie-tv {
+    min-width: unset;
+  }
+}
+
+@media screen and (max-width: 661px) {
+  .heading-l {
+    font-size: 20px;
+  }
+
+  .heading-s {
+    font-size: 14px;
+  }
+
+  .body-m {
+    font-size: 11px;
+  }
+
+  .movie-tv-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .sidebar-container {
+    margin: 0;
+    border-radius: 0;
+    padding: 16px;
+  }
+
+  .sidebar--nav-container {
+    gap: 24px;
+  }
+
+  .sidebar-logo-container a {
+    display: flex;
+  }
+
+  .sidebar-user-image {
+    width: 24px;
+    height: 24px;
+  }
+
+  .searchbar-container {
+    margin-bottom: 24px;
+  }
+
+  .searchbar-container .heading-m {
+    font-size: 16px;
+  }
+
+  .searchbar-input {
+    padding-bottom: 0;
+  }
+
+  .category-wrapper {
+    margin-top: 24px;
+  }
+
+  .arrow-left,
+  .arrow-right {
+    width: 20px;
+    height: 20px;
+  }
+
+  .arrows-container {
+    gap: 16px;
+  }
+
+  .home-trending--container {
+    gap: 16px;
+  }
+
+  .home-trending--movie_image {
+    width: 240px;
+    height: 140px;
+  }
+
+  .home-recommended--container {
+    margin-top: 0;
+  }
+}
+
+@media screen and (max-width: 661px) {
+  .movie-tv-container {
+    grid-template-columns: 1fr;
+  }
+}

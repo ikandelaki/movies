@@ -6,6 +6,7 @@ import Movies from "./Movies";
 import TvSeries from "./TvSeries";
 import Bookmarks from "./Bookmarks";
 import Sidebar from "./Sidebar";
+import { SearchedMoviesProvider } from "./context/SearchedMoviesContext";
 
 const App = () => {
   const [hoveredMovie, setHoveredMovie] = useState("");
@@ -27,22 +28,10 @@ const App = () => {
     <Router>
       <div className='app-container no-select'>
         <Sidebar resetState={resetState} />
-        <Routes>
-          <Route
-            path='/'
-            element={
-              <Home
-                hoveredMovie={hoveredMovie}
-                setHoveredMovie={setHoveredMovie}
-                bookmarks={bookmarks}
-                setBookmark={setBookmark}
-                searchedMovie={searchedMovie}
-                setQuery={setQuery}
-              />
-            }
-          >
+        <SearchedMoviesProvider>
+          <Routes>
             <Route
-              path='home'
+              path='/'
               element={
                 <Home
                   hoveredMovie={hoveredMovie}
@@ -51,50 +40,70 @@ const App = () => {
                   setBookmark={setBookmark}
                   searchedMovie={searchedMovie}
                   setQuery={setQuery}
+                  query={query}
+                />
+              }
+            >
+              <Route
+                path='home'
+                element={
+                  <Home
+                    hoveredMovie={hoveredMovie}
+                    setHoveredMovie={setHoveredMovie}
+                    bookmarks={bookmarks}
+                    setBookmark={setBookmark}
+                    searchedMovie={searchedMovie}
+                    setQuery={setQuery}
+                    query={query}
+                  />
+                }
+              />
+            </Route>
+            <Route
+              path='/movies'
+              element={
+                <Movies
+                  hoveredMovie={hoveredMovie}
+                  setHoveredMovie={setHoveredMovie}
+                  bookmarks={bookmarks}
+                  setBookmark={setBookmark}
+                  searchedMovie={searchedMovie}
+                  setQuery={setQuery}
+                  query={query}
                 />
               }
             />
-          </Route>
-          <Route
-            path='/movies'
-            element={
-              <Movies
-                hoveredMovie={hoveredMovie}
-                setHoveredMovie={setHoveredMovie}
-                bookmarks={bookmarks}
-                setBookmark={setBookmark}
-                searchedMovie={searchedMovie}
-                setQuery={setQuery}
-              />
-            }
-          />
-          <Route
-            path='/tvseries'
-            element={
-              <TvSeries
-                hoveredMovie={hoveredMovie}
-                setHoveredMovie={setHoveredMovie}
-                bookmarks={bookmarks}
-                setBookmark={setBookmark}
-                searchedMovie={searchedMovie}
-                setQuery={setQuery}
-              />
-            }
-          />
-          <Route
-            path='/bookmarks'
-            element={
-              <Bookmarks
-                hoveredMovie={hoveredMovie}
-                setHoveredMovie={setHoveredMovie}
-                bookmarks={bookmarks}
-                setBookmark={setBookmark}
-                searchedMovie={searchedMovie}
-                setQuery={setQuery}
-              />
-            }
-          />
-        </Routes>
+            <Route
+              path='/tvseries'
+              element={
+                <TvSeries
+                  hoveredMovie={hoveredMovie}
+                  setHoveredMovie={setHoveredMovie}
+                  bookmarks={bookmarks}
+                  setBookmark={setBookmark}
+                  searchedMovie={searchedMovie}
+                  setQuery={setQuery}
+                  query={query}
+                />
+              }
+            />
+            <Route
+              path='/bookmarks'
+              element={
+                <Bookmarks
+                  hoveredMovie={hoveredMovie}
+                  setHoveredMovie={setHoveredMovie}
+                  bookmarks={bookmarks}
+                  setBookmark={setBookmark}
+                  searchedMovie={searchedMovie}
+                  category={"bookmarks"}
+                  setQuery={setQuery}
+                  query={query}
+                />
+              }
+            />
+          </Routes>
+        </SearchedMoviesProvider>
       </div>
     </Router>
   );

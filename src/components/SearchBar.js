@@ -1,11 +1,13 @@
 import React from "react";
 import "../styles/SearchBar.css";
 import { ReactComponent as SearchLogo } from "../logos/icon-search.svg";
+import { useSearchedMovies } from "./context/SearchedMoviesContext";
 
-const SearchBar = ({ query, setQuery }) => {
+const SearchBar = ({ searchedMovie, query, setQuery }) => {
+  const numberOfSearchedMovies = useSearchedMovies();
   return (
     <div className='searchbar-container'>
-      <form>
+      <form onSubmit={(event) => event.preventDefault()}>
         <SearchLogo />
         <input
           className='heading-m searchbar-input'
@@ -15,6 +17,11 @@ const SearchBar = ({ query, setQuery }) => {
           placeholder='Search for movies or TV series'
         />
       </form>
+      {searchedMovie && numberOfSearchedMovies ? (
+        <div className='search-results-container'>
+          Found {numberOfSearchedMovies} results for "{searchedMovie}"
+        </div>
+      ) : null}
     </div>
   );
 };

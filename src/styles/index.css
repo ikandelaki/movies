@@ -62,21 +62,25 @@ input {
 .heading-l {
   font-size: 32px;
   font-weight: 300;
+  line-height: 1.26;
 }
 
 .heading-m {
   font-size: 24px;
   font-weight: 300;
+  line-height: 1.26;
 }
 
 .heading-s {
   font-size: 24px;
   font-weight: 500;
+  line-height: 1.26;
 }
 
 .heading-xs {
   font-size: 18px;
   font-weight: 500;
+  line-height: 1.26;
 }
 
 /*********************************/
@@ -85,11 +89,13 @@ input {
 .body-m {
   font-size: 15px;
   font-weight: 300;
+  line-height: 1.26;
 }
 
 .body-s {
   font-size: 13px;
   font-weight: 300;
+  line-height: 1.26;
 }
 
 /*********************************************/
@@ -112,4 +118,8 @@ input {
 
 .no-select:focus {
   outline: none !important;
+}
+
+.movie-tv-container:has(.error) {
+  grid-template-columns: 1fr;
 }

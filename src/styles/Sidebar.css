@@ -5,6 +5,7 @@
   padding: 32px 28px;
   border-radius: 20px;
   height: calc(100vh - 64px);
+  min-height: 471px;
   background-color: var(--semi-dark-blue);
   margin: 32px 36px 32px 32px;
 }
